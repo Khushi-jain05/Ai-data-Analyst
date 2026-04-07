@@ -1,0 +1,18 @@
+const store = require('../services/sessionStore');
+
+module.exports = (req, res, next) => {
+  const id = req.session?.datasetId;
+  if (!id) {
+    return res.status(400).json({
+      error: 'No dataset loaded. Upload a file or connect a data source first.',
+    });
+  }
+  const dataset = store.get(id);
+  if (!dataset) {
+    return res.status(410).json({
+      error: 'Dataset has expired. Please upload your file again.',
+    });
+  }
+  req.dataset = dataset;
+  next();
+};
