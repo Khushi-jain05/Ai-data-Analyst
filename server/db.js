@@ -22,6 +22,22 @@ const db = new sqlite3.Database(dbPath, (err) => {
         console.log('✔️ Users table ready.');
       }
     });
+
+    // Create uploads table for history
+    db.run(`CREATE TABLE IF NOT EXISTS uploads (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER,
+      filename TEXT,
+      file_data TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY(user_id) REFERENCES users(id)
+    )`, (err) => {
+      if (err) {
+        console.error('❌ Error creating uploads table', err.message);
+      } else {
+        console.log('✔️ Uploads table ready.');
+      }
+    });
   }
 });
 

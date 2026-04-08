@@ -4,6 +4,8 @@ const cors    = require('cors');
 const morgan  = require('morgan');
 const session = require('express-session');
 const path    = require('path');
+const authRoutes = require('./routes/auth');
+const uploadRoutes = require('./routes/uploads');
 
 const app = express();
 
@@ -18,7 +20,8 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // ── Middleware ────────────────────────────────────────────────
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '200mb' }));
+app.use(express.urlencoded({ limit: '200mb', extended: true, parameterLimit: 100000 }));
 app.use(morgan('dev'));
 app.use(session({
   secret: process.env.SESSION_SECRET || 'dev-secret-change-me',
@@ -30,8 +33,10 @@ app.use(session({
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // ── Routes ────────────────────────────────────────────────────
-app.use('/api/auth',    require('./routes/auth'));
+app.use('/api/auth',    authRoutes);
+app.use('/api/history', uploadRoutes);
 app.use('/api/upload',  require('./routes/upload'));
+app.get('/api/ping',   (req, res) => res.json({ status: 'DataNova Cloud Online', port: 5002 }));
 app.use('/api/connect', require('./routes/connect'));
 app.use('/api/data',    require('./routes/data'));
 app.use('/api/chat',    require('./routes/chat'));
