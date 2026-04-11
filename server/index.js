@@ -40,6 +40,7 @@ app.get('/api/ping',   (req, res) => res.json({ status: 'DataNova Cloud Online',
 app.use('/api/connect', require('./routes/connect'));
 app.use('/api/data',    require('./routes/data'));
 app.use('/api/chat',    require('./routes/chat'));
+app.use('/api/ask',     require('./routes/ask'));
 
 // ── Health check ──────────────────────────────────────────────
 app.get('/health', (req, res) => res.json({ status:'ok', time: new Date().toISOString() }));
