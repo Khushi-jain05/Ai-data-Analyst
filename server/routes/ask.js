@@ -2,7 +2,8 @@ const router = require('express').Router();
 const { OpenAI } = require('openai');
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.GROQ_API_KEY || process.env.OPENAI_API_KEY,
+  baseURL: process.env.GROQ_API_KEY ? "https://api.groq.com/openai/v1" : undefined,
 });
 
 const fmtK = (n) => {
@@ -34,7 +35,7 @@ router.post('/', async (req, res) => {
     `;
 
     const response = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
+      model: process.env.GROQ_API_KEY ? 'llama-3.1-8b-instant' : 'gpt-3.5-turbo',
       messages: [
         { role: 'system', content: 'You are a helpful data analyst assistant.' },
         { role: 'user', content: prompt }
@@ -98,9 +99,10 @@ router.post('/', async (req, res) => {
       answer = flavors[Math.floor(Math.random() * flavors.length)] + " " + answer.charAt(0).toLowerCase() + answer.slice(1);
     }
 
-    const quotaNote = error.message.includes('429') ? "\n\n(Note: OpenAI quota exceeded. Using DataNova Local Analyst Engine.)" : "";
+    const errMsg = error.message || "Unknown error";
+    const errorNote = `\n\n*(Note: Cloud AI failed with error "${errMsg}". Switched to Local Analyst Fallback)*`;
     
-    res.json({ answer: answer + quotaNote });
+    res.json({ answer: answer + errorNote });
   }
 });
 
