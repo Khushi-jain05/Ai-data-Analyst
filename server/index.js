@@ -41,6 +41,7 @@ app.use('/api/connect', require('./routes/connect'));
 app.use('/api/data',    require('./routes/data'));
 app.use('/api/chat',    require('./routes/chat'));
 app.use('/api/ask',     require('./routes/ask'));
+app.use('/api/contact', require('./routes/contact'));
 
 // ── Health check ──────────────────────────────────────────────
 app.get('/health', (req, res) => res.json({ status:'ok', time: new Date().toISOString() }));
