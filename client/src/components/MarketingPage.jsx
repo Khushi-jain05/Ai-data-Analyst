@@ -5,12 +5,12 @@ import {
   FileBarChart, LayoutDashboard, Users, DollarSign, Megaphone,
   Target, CheckSquare, MessageCircle, HelpCircle, Settings,
   History, Clock, Loader2, Search, Bell, TrendingUp, TrendingDown,
-  UploadCloud, Zap, Sparkles, BarChart2, Globe, MousePointer2,
-  TrendingUp as TrendUpIcon, ArrowRight, Filter, Download,
+  UploadCloud, Zap, Sparkles, Globe,
+  TrendingUp as TrendUpIcon,
 } from 'lucide-react';
 import {
   ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip,
-  CartesianGrid, LineChart, Line, ComposedChart, Cell, PieChart, Pie, Legend
+  CartesianGrid, Line, ComposedChart, Cell, PieChart, Pie, Legend
 } from 'recharts';
 import logo from '../assets/logo.png';
 import { useData } from '../context/DataContext';
@@ -233,7 +233,7 @@ export default function MarketingPage() {
       bestChannel,
       needsImprovement
     };
-  }, [data, fileName]);
+  }, [data]);
 
   const { channels, trendData, totalVisitors, totalLeads, totalCustomers, convRate, totalRevenue, insight, bestChannel, needsImprovement } = mkt;
 

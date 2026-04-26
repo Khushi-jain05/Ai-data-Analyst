@@ -5,7 +5,7 @@ import {
   LayoutDashboard, FileBarChart, Users, DollarSign,
   Megaphone, CheckSquare, MessageCircle, HelpCircle,
   Settings, History as HistoryIcon, Loader2, Search, Bell,
-  ChevronRight, ArrowUpRight, Mail, Phone, MapPin,
+  ArrowUpRight, Mail, Phone, MapPin,
   Globe, Briefcase, AtSign, Terminal, Zap,
   Send, Clock
 } from 'lucide-react';
@@ -302,15 +302,15 @@ export default function ContactPage() {
               <div className="bg-[#11151b] border border-white/5 rounded-[32px] p-8">
                 <h3 className="text-sm font-black uppercase tracking-widest text-gray-400 mb-6">Follow & connect</h3>
                 <div className="grid grid-cols-3 gap-3">
-                  <a href="#" className="flex flex-col items-center justify-center gap-3 p-4 bg-white/[0.02] border border-white/5 rounded-2xl hover:bg-emerald-500/10 hover:border-emerald-500/20 transition-all group">
+                  <a href="#!" className="flex flex-col items-center justify-center gap-3 p-4 bg-white/[0.02] border border-white/5 rounded-2xl hover:bg-emerald-500/10 hover:border-emerald-500/20 transition-all group">
                     <Globe className="w-5 h-5 text-gray-500 group-hover:text-emerald-400" />
                     <span className="text-[8px] font-black uppercase tracking-widest text-gray-500 group-hover:text-white">GitHub</span>
                   </a>
-                  <a href="#" className="flex flex-col items-center justify-center gap-3 p-4 bg-white/[0.02] border border-white/5 rounded-2xl hover:bg-emerald-500/10 hover:border-emerald-500/20 transition-all group">
+                  <a href="#!" className="flex flex-col items-center justify-center gap-3 p-4 bg-white/[0.02] border border-white/5 rounded-2xl hover:bg-emerald-500/10 hover:border-emerald-500/20 transition-all group">
                     <Briefcase className="w-5 h-5 text-gray-500 group-hover:text-emerald-400" />
                     <span className="text-[8px] font-black uppercase tracking-widest text-gray-500 group-hover:text-white">LinkedIn</span>
                   </a>
-                  <a href="#" className="flex flex-col items-center justify-center gap-3 p-4 bg-white/[0.02] border border-white/5 rounded-2xl hover:bg-emerald-500/10 hover:border-emerald-500/20 transition-all group">
+                  <a href="#!" className="flex flex-col items-center justify-center gap-3 p-4 bg-white/[0.02] border border-white/5 rounded-2xl hover:bg-emerald-500/10 hover:border-emerald-500/20 transition-all group">
                     <AtSign className="w-5 h-5 text-gray-500 group-hover:text-emerald-400" />
                     <span className="text-[8px] font-black uppercase tracking-widest text-gray-500 group-hover:text-white">Twitter</span>
                   </a>

@@ -10,7 +10,7 @@ import {
 } from 'recharts';
 import {
   LayoutDashboard, FileBarChart, Users, DollarSign,
-  Megaphone, Target, CheckSquare, MessageCircle, HelpCircle,
+  Megaphone, CheckSquare, MessageCircle, HelpCircle,
   History as HistoryIcon, Settings, Loader2, Search, Bell,
   ChevronRight, UploadCloud, ArrowUpRight, MoreHorizontal,
   Clock

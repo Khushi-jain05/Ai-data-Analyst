@@ -4,9 +4,9 @@ import axios from 'axios';
 
 import {
   LayoutDashboard, FileBarChart, Users, DollarSign,
-  Megaphone, Target, CheckSquare, MessageCircle, HelpCircle,
+  Megaphone, CheckSquare, MessageCircle, HelpCircle,
   History as HistoryIcon, Settings, Loader2, Search, Bell,
-  ChevronRight, Clock, User, Lock, Database, CreditCard,
+  ChevronRight, Clock, User, Lock, 
   Camera, Save
 } from 'lucide-react';
 import logo from '../assets/logo.png';
@@ -46,7 +46,7 @@ export default function SettingsPage() {
   const navigate = useNavigate();
   const { 
     history, isHistoryLoading, currentUser, setCurrentUser, 
-    fileName, data, updateUserProfile, theme, setTheme 
+    data, updateUserProfile 
   } = useData();
 
   const [activeCategory, setActiveCategory] = useState('Profile');

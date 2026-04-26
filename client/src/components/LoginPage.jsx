@@ -124,7 +124,7 @@ export default function LoginPage() {
             <div className="space-y-2 relative">
               <div className="flex items-center justify-between">
                  <label className="text-xs font-medium text-gray-400">Password</label>
-                 <a href="#" className="text-[10px] text-emerald-400 hover:text-emerald-300">Forgot password?</a>
+                 <a href="#!" className="text-[10px] text-emerald-400 hover:text-emerald-300">Forgot password?</a>
               </div>
               <div className="relative">
                  <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Enter your password" minLength={8} className="w-full bg-[#1c212b] border-none outline-none text-sm text-white px-4 py-3.5 pr-12 rounded-xl focus:ring-1 focus:ring-emerald-500 transition placeholder:text-gray-600" required />

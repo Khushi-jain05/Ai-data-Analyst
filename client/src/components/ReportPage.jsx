@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {
   FileBarChart, LayoutDashboard, Users, DollarSign, Megaphone,
-  Target, CheckSquare, MessageCircle, HelpCircle, Settings,
+  CheckSquare, MessageCircle, HelpCircle, Settings,
   History, Clock, Loader2, Search, Bell, Download, Sparkles,
   TrendingUp, TrendingDown, ArrowUpRight, ArrowDownRight,
   ChevronRight, Send, UploadCloud
@@ -323,7 +323,7 @@ export default function ReportPage() {
     const summaryText = `Sales ${Number(growthPct) >= 0 ? 'increased' : 'declined'} by ${Math.abs(growthPct)}% across the dataset, reaching a total of ${fmt(totalVal)} in revenue. The <strong>${topCat}</strong> segment contributed the most at <strong>${topCatPct}%</strong> of total value. Average transaction stands at <strong>${fmt(avgOrder)}</strong> per record. ${processingData.length.toLocaleString()} records were analyzed across ${cols.length} columns.`;
 
     return { processingData, salesTrendData, categoryData, topProducts, bottomProducts, totalVal, growthStr, avgOrder, anomalies, summaryText, cols };
-  }, [data, fileName, activeFilter]);
+  }, [data, activeFilter]);
 
   const hasData = computed !== null;
 

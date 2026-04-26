@@ -5,7 +5,7 @@ import {
   Megaphone, CheckSquare, MessageCircle, HelpCircle,
   Settings, History as HistoryIcon, Loader2, Search, Bell,
   ChevronRight, ArrowUpRight, Play, FileText, Globe,
-  MessageSquare, Users as Community, Shield, Zap, 
+  Users as Community, Shield, Zap, 
   Rocket, Database, Brain, PieChart, ChevronDown, Clock
 } from 'lucide-react';
 import logo from '../assets/logo.png';
