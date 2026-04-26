@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import History from "../pages/History";
+import { History as HistoryIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard, FileBarChart, Users, DollarSign, Megaphone,
@@ -225,7 +225,7 @@ export default function TaskPage() {
           <nav className="space-y-1.5 text-sm">
             <SidebarItem icon={LayoutDashboard} label="Overview"     onClick={() => navigate('/dashboard')} />
             <SidebarItem icon={FileBarChart}    label="Report"       onClick={() => navigate('/report')} />
-            <SidebarItem icon={History}         label="History"      onClick={() => navigate('/history')} />
+            <SidebarItem icon={HistoryIcon}     label="History" onClick={() => navigate('/history')} />
             <SidebarItem icon={Users}           label="Lead"         onClick={() => navigate('/leads')} />
             <SidebarItem icon={DollarSign}      label="Revenue"      onClick={() => navigate('/revenue')} />
             <SidebarItem icon={Megaphone}       label="Marketing"    onClick={() => navigate('/marketing')} />
