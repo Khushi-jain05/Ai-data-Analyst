@@ -80,7 +80,6 @@ export const DataProvider = ({ children }) => {
     const dateCol  = findCol(cols, ['date', 'time', 'created', 'ordered', 'timestamp', 'day', 'month']);
     const custCol  = findCol(cols, ['customer', 'client', 'buyer', 'name', 'user', 'person']);
     const catCol   = findCol(cols, ['category', 'segment', 'type', 'region', 'product', 'department']);
-    const qtyCol   = findCol(cols, ['quantity', 'qty', 'units', 'count', 'orders', 'items']);
 
     const numCol = salesCol || firstNumericCol(cols, rows);
 

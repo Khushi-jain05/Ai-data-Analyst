@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import History from "../pages/History";
 import { useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard, FileBarChart, Users, DollarSign, Megaphone,
   CheckSquare, MessageCircle, HelpCircle, Settings,
-  History, Clock, Loader2, Search, Bell, TrendingUp, TrendingDown,
-  UploadCloud, Zap, Sparkles, Filter, Plus, Play, Pause, Edit2, Trash2,
-  AlertCircle, ChevronRight, Activity, BellRing
+  Clock, Loader2, Search, Bell, Sparkles, Plus, Play, Pause, Edit2, Trash2,
+  AlertCircle, Activity, BellRing
 } from 'lucide-react';
 import { LineChart, Line, ResponsiveContainer } from 'recharts';
 import logo from '../assets/logo.png';

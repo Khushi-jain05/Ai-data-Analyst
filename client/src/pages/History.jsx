@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {
   LayoutDashboard, FileBarChart, Users, DollarSign, Megaphone,
-  Target, CheckSquare, MessageCircle, HelpCircle, Settings,
+  CheckSquare, MessageCircle, HelpCircle, Settings,
   History as HistoryIcon, Clock, Loader2, Search, Bell,
   ChevronRight, FileText, RefreshCw, Database
 } from 'lucide-react';
