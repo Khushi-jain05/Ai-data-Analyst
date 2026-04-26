@@ -239,7 +239,7 @@ export default function TaskPage() {
           {/* Recent Activity */}
           <div className="mt-10 flex-col flex-1 overflow-hidden min-h-0">
             <div className="flex items-center gap-2 mb-4 px-3">
-              <History className="w-4 h-4 text-gray-500" />
+              <HistoryIcon className="w-4 h-4 text-gray-500" />
               <p className="text-[10px] text-gray-500 uppercase font-black tracking-widest">Recent Activity</p>
             </div>
             <div className="space-y-1 overflow-y-auto custom-scrollbar flex-1 pr-1">
