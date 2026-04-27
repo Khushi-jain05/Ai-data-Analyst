@@ -4,40 +4,37 @@ const db = require('../db');
 const authenticateToken = require('../middleware/auth');
 
 // @route GET /api/history
-// Fetch recent history for the user
-router.get('/', authenticateToken, (req, res) => {
-  db.all('SELECT id, filename, created_at FROM uploads WHERE user_id = ? ORDER BY created_at DESC LIMIT 20', 
-    [req.userId], 
-    (err, rows) => {
-      if (err) {
-        console.error('❌ SQL Error fetching history:', err.message);
-        return res.status(500).json({ error: 'Database error' });
-      }
-      res.json({ history: rows });
-    }
-  );
+router.get('/', authenticateToken, async (req, res) => {
+  try {
+    const [rows] = await db.query(
+      'SELECT id, filename, created_at FROM uploads WHERE user_id = ? ORDER BY created_at DESC LIMIT 20', 
+      [req.userId]
+    );
+    res.json({ history: rows });
+  } catch (err) {
+    console.error('❌ MySQL Error fetching history:', err.message);
+    res.status(500).json({ error: 'Database error' });
+  }
 });
 
 // @route GET /api/uploads/:id
-// Fetch specific upload data
-router.get('/:id', authenticateToken, (req, res) => {
-  db.get('SELECT * FROM uploads WHERE id = ? AND user_id = ?', 
-    [req.params.id, req.userId], 
-    (err, row) => {
-      if (err) return res.status(500).json({ error: 'Database error' });
-      if (!row) return res.status(404).json({ error: 'Upload not found' });
-      res.json({ upload: row });
-    }
-  );
+router.get('/:id', authenticateToken, async (req, res) => {
+  try {
+    const [rows] = await db.query('SELECT * FROM uploads WHERE id = ? AND user_id = ?', [req.params.id, req.userId]);
+    const row = rows[0];
+    if (!row) return res.status(404).json({ error: 'Upload not found' });
+    res.json({ upload: row });
+  } catch (err) {
+    res.status(500).json({ error: 'Database error' });
+  }
 });
 
 // @route POST /api/history
-// Save a new upload to history
-router.post('/', authenticateToken, (req, res) => {
+router.post('/', authenticateToken, async (req, res) => {
   const { filename, data } = req.body;
   
   if (!req.userId) {
-    return res.status(401).json({ error: 'Auth Error: No user ID found in session' });
+    return res.status(401).json({ error: 'Auth Error' });
   }
 
   if (!filename || !data) {
@@ -46,32 +43,25 @@ router.post('/', authenticateToken, (req, res) => {
 
   try {
     const fileData = JSON.stringify(data);
-    db.run(`INSERT INTO uploads (user_id, filename, file_data) VALUES (?, ?, ?)`, 
-      [req.userId, filename, fileData], 
-      function(err) {
-        if (err) {
-          console.error('❌ SQL Error saving upload:', err.message);
-          return res.status(500).json({ error: 'Error saving upload' });
-        }
-        res.json({ id: this.lastID, filename, created_at: new Date() });
-      }
+    const [result] = await db.query(
+      'INSERT INTO uploads (user_id, filename, file_data) VALUES (?, ?, ?)', 
+      [req.userId, filename, fileData]
     );
+    res.json({ id: result.insertId, filename, created_at: new Date() });
   } catch (err) {
-    console.error('❌ JSON Stringify Error:', err.message);
-    res.status(500).json({ error: 'Data processing error' });
+    console.error('❌ MySQL Error saving upload:', err.message);
+    res.status(500).json({ error: 'Error saving upload' });
   }
 });
 
 // @route DELETE /api/uploads/:id
-// Delete a history item
-router.delete('/:id', authenticateToken, (req, res) => {
-  db.run('DELETE FROM uploads WHERE id = ? AND user_id = ?', 
-    [req.params.id, req.userId], 
-    function(err) {
-      if (err) return res.status(500).json({ error: 'Database error' });
-      res.json({ success: true });
-    }
-  );
+router.delete('/:id', authenticateToken, async (req, res) => {
+  try {
+    await db.query('DELETE FROM uploads WHERE id = ? AND user_id = ?', [req.params.id, req.userId]);
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: 'Database error' });
+  }
 });
 
 module.exports = router;

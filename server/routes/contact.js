@@ -12,14 +12,15 @@ router.post('/', (req, res) => {
   }
 
   const query = `INSERT INTO contact_messages (name, email, type, message) VALUES (?, ?, ?, ?)`;
-  db.run(query, [name, email, type, message], function(err) {
-    if (err) {
+  db.query(query, [name, email, type, message])
+    .then(([result]) => {
+      console.log(`📩 New message from ${name} (${email}) saved. ID: ${result.insertId}`);
+      res.json({ message: 'Message sent successfully!', id: result.insertId });
+    })
+    .catch(err => {
       console.error('❌ Error saving contact message:', err.message);
-      return res.status(500).json({ error: 'Failed to send message' });
-    }
-    console.log(`📩 New message from ${name} (${email}) saved. ID: ${this.lastID}`);
-    res.json({ message: 'Message sent successfully!', id: this.lastID });
-  });
+      res.status(500).json({ error: 'Failed to send message' });
+    });
 });
 
 module.exports = router;
