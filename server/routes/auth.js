@@ -115,7 +115,7 @@ router.post('/google', async (req, res) => {
       headers: { Authorization: `Bearer ${access_token}` }
     });
     
-    if (!googleRes.ok) throw new Error('Invalid Google access token');
+    if (!googleRes.ok) throw new Error('INVALID_GOOGLE_TOKEN');
 
     const payload = await googleRes.json();
     const { email, given_name, family_name } = payload;
@@ -150,7 +150,11 @@ router.post('/google', async (req, res) => {
     }
   } catch (error) {
     console.error('Google Auth Error:', error);
-    res.status(401).json({ error: 'Invalid Google token' });
+    if (error.message === 'INVALID_GOOGLE_TOKEN') {
+      res.status(401).json({ error: 'Invalid Google token' });
+    } else {
+      res.status(500).json({ error: 'Database or server error during Google login' });
+    }
   }
 });
 
