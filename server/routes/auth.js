@@ -153,7 +153,7 @@ router.post('/google', async (req, res) => {
     if (error.message === 'INVALID_GOOGLE_TOKEN') {
       res.status(401).json({ error: 'Invalid Google token' });
     } else {
-      res.status(500).json({ error: 'Database or server error during Google login' });
+      res.status(500).json({ error: `Database or server error: ${error.message}` });
     }
   }
 });
