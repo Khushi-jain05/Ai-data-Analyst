@@ -45,7 +45,7 @@ export default function ContactPage() {
     
     setIsSubmitting(true);
     try {
-      await axios.post('http://localhost:5002/api/contact', formData);
+      await axios.post('https://ai-data-analyst-lt82.onrender.com/api/contact', formData);
       setIsSubmitting(false);
       setSubmitted(true);
       setFormData({ name: '', email: '', type: '', message: '' });

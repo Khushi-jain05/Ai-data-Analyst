@@ -20,7 +20,7 @@ export default function LoginPage() {
         return;
       }
       try {
-        const res = await axios.post('http://localhost:5002/api/auth/google', { access_token: tokenResponse.access_token });
+        const res = await axios.post('https://ai-data-analyst-lt82.onrender.com/api/auth/google', { access_token: tokenResponse.access_token });
         localStorage.setItem('token', res.data.token);
         await initGlobal();
         navigate('/dashboard');
@@ -45,7 +45,7 @@ export default function LoginPage() {
     e.preventDefault();
     setError('');
     try {
-      const res = await axios.post('http://localhost:5002/api/auth/login', formData);
+      const res = await axios.post('https://ai-data-analyst-lt82.onrender.com/api/auth/login', formData);
       localStorage.setItem('token', res.data.token);
       await initGlobal();
       navigate('/dashboard');

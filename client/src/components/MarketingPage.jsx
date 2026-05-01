@@ -81,7 +81,7 @@ export default function MarketingPage() {
   const handleHistoryClick = async (id) => {
     try {
       setIsHistoryActionLoading(true);
-      const res = await axios.get(`http://localhost:5002/api/history/${id}`, {
+      const res = await axios.get(`https://ai-data-analyst-lt82.onrender.com/api/history/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       const upload = res.data.upload;
@@ -106,7 +106,7 @@ export default function MarketingPage() {
           setData(rows, file.name);
           processBusinessData(rows);
           try {
-            await axios.post('http://localhost:5002/api/history',
+            await axios.post('https://ai-data-analyst-lt82.onrender.com/api/history',
               { filename: file.name, data: rows.slice(0, 1000) },
               { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
             );

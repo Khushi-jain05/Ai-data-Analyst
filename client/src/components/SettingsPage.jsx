@@ -60,7 +60,7 @@ export default function SettingsPage() {
     formDataFile.append('image', file);
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.post('http://localhost:5002/api/auth/upload-profile-image', formDataFile, {
+      const res = await axios.post('https://ai-data-analyst-lt82.onrender.com/api/auth/upload-profile-image', formDataFile, {
         headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${token}` }
       });
       setCurrentUser(prev => ({ ...prev, profileImage: res.data.imageUrl }));
@@ -87,7 +87,7 @@ export default function SettingsPage() {
     setIsSaving(true);
     try {
       const token = localStorage.getItem('token');
-      await axios.put('http://localhost:5002/api/auth/change-password', passwordData, {
+      await axios.put('https://ai-data-analyst-lt82.onrender.com/api/auth/change-password', passwordData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setStatus({ type: 'success', message: 'Password updated!' });
@@ -103,7 +103,7 @@ export default function SettingsPage() {
     if (!window.confirm('Are you absolutely sure? This cannot be undone.')) return;
     try {
       const token = localStorage.getItem('token');
-      await axios.delete('http://localhost:5002/api/auth/delete-account', {
+      await axios.delete('https://ai-data-analyst-lt82.onrender.com/api/auth/delete-account', {
         headers: { Authorization: `Bearer ${token}` }
       });
       localStorage.removeItem('token');

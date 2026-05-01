@@ -46,7 +46,7 @@ export const DataProvider = ({ children }) => {
   /* ── fetchHistory from backend ── */
   const fetchHistory = useCallback(async () => {
     try {
-      const res = await axios.get('http://localhost:5002/api/history', {
+      const res = await axios.get('https://ai-data-analyst-lt82.onrender.com/api/history', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setHistory(res.data.history || []);
@@ -244,7 +244,7 @@ export const DataProvider = ({ children }) => {
       // 1. Fetch user globally
       if (!currentUser) {
         console.log('📡 initGlobal: Fetching /api/auth/me...');
-        const uRes = await axios.get('http://localhost:5002/api/auth/me', {
+        const uRes = await axios.get('https://ai-data-analyst-lt82.onrender.com/api/auth/me', {
           headers: { Authorization: `Bearer ${token}` }
         });
         console.log('✅ initGlobal: User fetched:', uRes.data.user);
@@ -257,7 +257,7 @@ export const DataProvider = ({ children }) => {
       if (hist && hist.length > 0 && data.length === 0) {
         console.log('📡 initGlobal: Auto-loading newest dataset:', hist[0].filename);
         // 3. Auto-load the newest dataset
-        const dRes = await axios.get(`http://localhost:5002/api/history/${hist[0].id}`, {
+        const dRes = await axios.get(`https://ai-data-analyst-lt82.onrender.com/api/history/${hist[0].id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const upload = dRes.data.upload;
@@ -291,7 +291,7 @@ export const DataProvider = ({ children }) => {
   const updateUserProfile = useCallback(async (updatedFields) => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.put('http://localhost:5002/api/auth/update', updatedFields, {
+      const res = await axios.put('https://ai-data-analyst-lt82.onrender.com/api/auth/update', updatedFields, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setCurrentUser(res.data.user);

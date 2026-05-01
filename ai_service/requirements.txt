@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+openai
+supabase
+langchain
+pydantic
+python-dotenv
+tiktoken
+pypdf
+sqlalchemy
+mysql-connector-python
+python-multipart
+jose
+passlib[bcrypt]

@@ -38,7 +38,7 @@ export default function History() {
   const loadDataset = async (item) => {
     try {
       setLoadingId(item.id);
-      const res = await axios.get(`http://localhost:5002/api/history/${item.id}`, {
+      const res = await axios.get(`https://ai-data-analyst-lt82.onrender.com/api/history/${item.id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       const upload = res.data.upload;

@@ -18,7 +18,7 @@ export default function SignUpPage() {
         return;
       }
       try {
-        const res = await axios.post('http://localhost:5002/api/auth/google', { access_token: tokenResponse.access_token });
+        const res = await axios.post('https://ai-data-analyst-lt82.onrender.com/api/auth/google', { access_token: tokenResponse.access_token });
         localStorage.setItem('token', res.data.token);
         navigate('/dashboard');
       } catch (err) {
@@ -42,7 +42,7 @@ export default function SignUpPage() {
     e.preventDefault();
     setError('');
     try {
-      const res = await axios.post('http://localhost:5002/api/auth/signup', formData);
+      const res = await axios.post('https://ai-data-analyst-lt82.onrender.com/api/auth/signup', formData);
       localStorage.setItem('token', res.data.token);
       navigate('/dashboard');
     } catch (err) {
