@@ -46,6 +46,17 @@ app.use('/api/contact', require('./routes/contact'));
 // ── Health check ──────────────────────────────────────────────
 app.get('/health', (req, res) => res.json({ status:'ok', time: new Date().toISOString() }));
 
+// ── DB diagnostic (TEMPORARY - remove after debugging) ───────
+app.get('/api/db-check', async (req, res) => {
+  try {
+    const db = require('./db');
+    const [rows] = await db.query('SELECT 1 as result');
+    res.json({ db: 'connected', result: rows, host: process.env.DB_HOST, port: process.env.DB_PORT });
+  } catch (err) {
+    res.status(500).json({ db: 'failed', error: err.message, code: err.code, host: process.env.DB_HOST, port: process.env.DB_PORT });
+  }
+});
+
 // ── Global error handler ──────────────────────────────────────
 app.use((err, req, res, next) => {
   console.error('❌', err.message);

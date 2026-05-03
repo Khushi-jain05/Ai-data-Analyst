@@ -38,7 +38,7 @@ router.post('/signup', async (req, res) => {
     res.json({ token, user: { id: userId, firstName, lastName, email, userName: '', role: '', bio: '', profileImage: '' } });
   } catch (error) {
     console.error('Signup error:', error);
-    res.status(500).json({ error: 'Server error' });
+    res.status(500).json({ error: `Database or server error: ${error.message}` });
   }
 });
 
@@ -74,7 +74,7 @@ router.post('/login', async (req, res) => {
     } });
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({ error: 'Server error' });
+    res.status(500).json({ error: `Database or server error: ${error.message}` });
   }
 });
 
