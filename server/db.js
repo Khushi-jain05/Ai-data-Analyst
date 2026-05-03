@@ -1,16 +1,25 @@
 const mysql = require('mysql2');
 require('dotenv').config();
 
+const dbHost = process.env.DB_HOST || 'mysql-1158b374-nst-32a2.l.aivencloud.com';
+const dbPort = process.env.DB_PORT || 22031;
+let dbPassword = process.env.DB_PASSWORD || '';
+
+// Handle the common typo where 'O' (letter) is entered as '0' (zero) in the Aiven password
+if (dbPassword && dbPassword.includes('Af07')) {
+  dbPassword = dbPassword.replace('Af07', 'AfO7');
+}
+
 const pool = mysql.createPool({
-  host: process.env.DB_HOST || 'localhost',
-  port: process.env.DB_PORT || 3306,
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME || 'datanova_db',
+  host: dbHost,
+  port: dbPort,
+  user: process.env.DB_USER || 'avnadmin',
+  password: dbPassword,
+  database: process.env.DB_NAME || 'defaultdb',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
-  ssl: process.env.DB_HOST && process.env.DB_HOST.includes('aivencloud') ? { rejectUnauthorized: false } : undefined
+  ssl: dbHost.includes('aivencloud') ? { rejectUnauthorized: false } : undefined
 });
 
 const promisePool = pool.promise();
